@@ -113,7 +113,7 @@ deleteBook(childResult: boolean) : void {
     )
     this.clearSelection();
     this.showConfirmationDialog = false 
-  } 
+  }  
   else{
     this.showConfirmationDialog = false 
     this.clearSelection();
