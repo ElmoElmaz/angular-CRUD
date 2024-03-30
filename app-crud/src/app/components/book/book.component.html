@@ -1,0 +1,51 @@
+<div>
+    <h2> Books </h2>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication Year</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let book of books">
+            <td>{{ book.title}}</td>
+            <td>{{ book.author}}</td>
+            <td>{{ book.publicationYear}}</td>
+            <td> 
+                <button (click)="selectBook(book)"> Edit </button>
+                <button (click)="confirmDeleteBook(book)"> Delete </button>
+            </td>
+        </tr>
+    </table>
+
+<div>
+    <h2> {{selectedBook._id ==''? 'Add Book' : 'Edit Book'}}</h2>
+    <label for="bookTitle">Title:</label>
+    <input id="bookTitle" [(ngModel)]="selectedBook.title" placeholder="Enter Title" />
+
+    <label for="bookAuthor">Author:</label>
+    <input id="bookAuthor" [(ngModel)]="selectedBook.author" placeholder="Enter Author" />
+
+    <label for="bookpublicationYear">Publication Year:</label>
+    <input id="bookpublicationYear" type="number" [(ngModel)]="selectedBook.publicationYear" placeholder="Enter publication Year" />
+
+    <button (click)="selectedBook._id == '' ? confirmAddBook() : confirmUpdateBook()">
+        {{ selectedBook._id == "" ? 'Add' : 'Edit' }}
+    </button> 
+
+
+</div>
+
+
+
+<app-confirmation-dialog
+*ngIf="showConfirmationDialog"
+[bookTitle]="selectedBook.title"
+[action]="actionType"
+(comfirmed)="handleAction($event)"> 
+</app-confirmation-dialog>
+
+
+</div>  
+
+
